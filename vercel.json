@@ -1,0 +1,30 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist-static",
+  "framework": null,
+  "installCommand": "npm install",
+  "ignoreCommand": "node scripts/skip-if-api-conflict.mjs",
+  "functions": {
+    "api/card-og/[ca].js": {
+      "maxDuration": 10,
+      "includeFiles": "{static-public/**,public/**,src/lib/vendor/**,dist-static/**,wasm/**,node_modules/@resvg/resvg-wasm/index_bg.wasm}"
+    },
+    "api/card-art/[ca].js": {
+      "maxDuration": 10
+    },
+    "api/card-stake/[ca].js": {
+      "maxDuration": 10,
+      "includeFiles": "{static-public/**,dist-static/index.html,dist-static/share-card.png}"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/public/og/:ca", "destination": "/api/card-og/:ca" },
+    { "source": "/api/og/:ca", "destination": "/api/card-og/:ca" },
+    { "source": "/api/public/art/:ca", "destination": "/api/card-art/:ca" },
+    { "source": "/api/art/:ca", "destination": "/api/card-art/:ca" },
+    { "source": "/stake/:ca", "destination": "/api/card-stake/:ca" },
+    { "source": "/api/stake/:ca", "destination": "/api/card-stake/:ca" },
+    { "source": "/((?!api/|stake/|assets/|wasm/|fonts/|cards/).*)", "destination": "/index.html" }
+  ]
+}

@@ -1,0 +1,6 @@
+# Netlify also reads these from the publish folder. Cloudflare Pages
+# Functions already win for /stake and /api; do not add a /* -> /index.html
+# splat here (wrangler treats it as an infinite loop and ignores it).
+/api/public/og/*    /.netlify/functions/og      200
+/api/public/art/*   /.netlify/functions/art     200
+/stake/*            /.netlify/functions/stake   200

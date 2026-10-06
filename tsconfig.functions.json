@@ -1,0 +1,27 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "server/vercel/**/*.ts",
+    "netlify/functions/**/*.ts",
+    "functions/**/*.ts",
+    "src/lib/card-art.ts",
+    "src/lib/card-html.ts",
+    "src/lib/card-png.ts",
+    "src/lib/card-shared.ts",
+    "src/lib/host-files.ts",
+    "src/lib/lambda-response.ts",
+    "src/lib/node-handler.ts",
+    "src/lib/svg-text.ts",
+    "src/lib/token-resolver.ts",
+    "src/lib/token-types.ts",
+    "src/lib/vendor-modules.d.ts",
+    "src/wasm-modules.d.ts",
+    "src/lib/vendor/**/*.d.ts",
+    "src/lib/vendor/**/*.d.mts"
+  ],
+  "compilerOptions": {
+    "types": ["node"],
+    "noEmit": true,
+    "allowImportingTsExtensions": false
+  }
+}

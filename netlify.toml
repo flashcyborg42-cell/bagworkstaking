@@ -1,0 +1,43 @@
+[build]
+  command = "npm run build"
+  publish = "dist-static"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+  directory = "netlify/functions"
+  included_files = [
+    "static-public/share-card.png",
+    "static-public/cards/**",
+    "static-public/wasm/**",
+    "static-public/fonts/**",
+    "src/lib/vendor/resvg-wasm/**",
+    "src/lib/vendor/opentype.mjs",
+    "node_modules/@resvg/resvg-wasm/index_bg.wasm"
+  ]
+
+[[redirects]]
+  from = "/api/public/og/:ca"
+  to = "/.netlify/functions/og?ca=:ca"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/public/art/:ca"
+  to = "/.netlify/functions/art?ca=:ca"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/stake/:ca"
+  to = "/.netlify/functions/stake?ca=:ca"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

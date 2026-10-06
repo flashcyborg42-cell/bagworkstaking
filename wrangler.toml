@@ -1,0 +1,10 @@
+name = "bagwork"
+compatibility_date = "2025-09-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist-static"
+
+# Pages Git CI does not run npm unless the dashboard has a build command.
+# The zip already contains dist-static plus vendored function deps so Deploy
+# works with an empty command. NODE_VERSION is used if a command is added later.
+[vars]
+NODE_VERSION = "22"
